@@ -385,16 +385,26 @@
       $(".js-modal-content").css({ width: gameWidth + "px" });
 
       // share ke whatshapp
-      $(".js-invite").on("click", function () {
-        const score = $("#score").text(); // ambil nilai skor
-        const message = `Saya baru saja mendapat skor ${score} di permainan Tower Building! Yuk coba main juga!`;
-        const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(
-          message
-        )}`;
-
-        // Buka URL di tab baru atau aplikasi WhatsApp
-        window.open(whatsappUrl, "_blank");
+       $(".js-invite").on("click", function () {
+        var score = $("#score").text(); // ambil nilai skor
+        shareOnWhatsApp(score); // panggil fungsi share dengan skor
       });
+
+      function shareOnWhatsApp(score) {
+        var websiteLink = "https://yourwebsite.com"; // ganti dengan link website Anda
+        var message =
+          "Saya mendapatkan skor " +
+          score +
+          " dalam permainan Tower Building! Coba permainan ini di: " +
+          websiteLink;
+
+        // Membuat URL untuk share ke WhatsApp
+        var whatsappUrl =
+          "https://api.whatsapp.com/send?text=" + encodeURIComponent(message);
+
+        // Redirect ke WhatsApp
+        window.open(whatsappUrl, "_blank");
+      }
 
       // loading animation
       function hideLoading() {
